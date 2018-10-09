@@ -1,5 +1,4 @@
 const graphql = require('graphql');
-const getConnection = require('../db/mysql_pool.js');
 
 const { 
   GraphQLObjectType,
@@ -18,14 +17,14 @@ const UserType = new GraphQLObjectType({
 		everyRelatedScore: {
 			type: new GraphQLList(ScoreType),
 			resolve(parent, args) {
-				getConnection((err, con) => {
-					const sql = `SELECT * FROM Score WHERE userId = ${parent.id}`;
-					con.query(sql, (err, result) => {
-						if (err) throw err;
-						con.release();
-						return result;
-					})
-				})
+				// getConnection((err, con) => {
+				// 	const sql = `SELECT * FROM Score WHERE userId = ${parent.id}`;
+				// 	con.query(sql, (err, result) => {
+				// 		if (err) throw err;
+				// 		con.release();
+				// 		return result;
+				// 	})
+				// })
 			}
 		},
 		id: { type: GraphQLString },
@@ -41,14 +40,14 @@ const GameType = new GraphQLObjectType({
 		everyRelatedScore: {
 			type: new GraphQLList(ScoreType),
 			resolve(parent, args) {
-				getConnection((err, con) => {
-					const sql = `SELECT * FROM Score WHERE gameId = ${parent.id}`;
-					con.query(sql, (err, result) => {
-						if (err) throw err;
-						con.release();
-						return result;
-					})
-				})
+				// getConnection((err, con) => {
+				// 	const sql = `SELECT * FROM Score WHERE gameId = ${parent.id}`;
+				// 	con.query(sql, (err, result) => {
+				// 		if (err) throw err;
+				// 		con.release();
+				// 		return result;
+				// 	})
+				// })
 			}
 		},
 		dateStamp: { type: GraphQLString }
@@ -63,28 +62,28 @@ const ScoreType = new GraphQLObjectType({
 		relatedGame: {
 			type: GameType,
 			resolve(parent, args) {
-				getConnection((err, con) => {
-					const sql = `SELECT * FROM Game WHERE id = ${parent.gameId}`;
-					con.query(sql, (err, result) => {
-						if (err) throw err;
-						con.release();
-						return result;
-					})
-				})
+				// getConnection((err, con) => {
+				// 	const sql = `SELECT * FROM Game WHERE id = ${parent.gameId}`;
+				// 	con.query(sql, (err, result) => {
+				// 		if (err) throw err;
+				// 		con.release();
+				// 		return result;
+				// 	})
+				// })
 			}
 		},
 		userId: { type: GraphQLString },
 		relatedUser: {
 			type: UserType,
 			resolve(parent, args) {
-				getConnection((err, con) => {
-					const sql = `SELECT * FROM User WHERE id = ${parent.userId}`;
-					con.query(sql, (err, result) => {
-						if (err) throw err;
-						con.release();
-						return result;
-					})
-				})
+				// getConnection((err, con) => {
+				// 	const sql = `SELECT * FROM User WHERE id = ${parent.userId}`;
+				// 	con.query(sql, (err, result) => {
+				// 		if (err) throw err;
+				// 		con.release();
+				// 		return result;
+				// 	})
+				// })
 			}
 		},
 		place: { type: GraphQLString },
@@ -100,82 +99,82 @@ const RootQuery = new GraphQLObjectType({
 		everyUser: {
 			type: new GraphQLList(UserType),
 			resolve() {
-				getConnection((err, con) => {
-					const sql = 'SELECT * FROM User';
-					con.query(sql, (err, results) => {
-						if (err) throw err;
-						con.release();
-						return results;
-					})
-				})
+				// getConnection((err, con) => {
+				// 	const sql = 'SELECT * FROM User';
+				// 	con.query(sql, (err, results) => {
+				// 		if (err) throw err;
+				// 		con.release();
+				// 		return results;
+				// 	})
+				// })
 			}
 		},
 		user: {
 			type: UserType,
 			args: { id: { type: GraphQLID }},
 			resolve(parent, args) {
-				getConnection((err, con) => {
-					const sql = `SELECT * FROM User WHERE id = ${args.id}`;
-					con.query(sql, (err, result) => {
-						if (err) throw err;
-						con.release();
-						return result;
-					})
-				})
+				// getConnection((err, con) => {
+				// 	const sql = `SELECT * FROM User WHERE id = ${args.id}`;
+				// 	con.query(sql, (err, result) => {
+				// 		if (err) throw err;
+				// 		con.release();
+				// 		return result;
+				// 	})
+				// })
 			}
 		},
 		everyGame: {
 			type: new GraphQLList(GameType),
 			resolve() {
-				getConnection((err, con) => {
-					const sql = 'SELECT * FROM Game';
-					con.query(sql, (err, results) => {
-						if (err) throw err;
-						con.release();
-						return results;
-					})
-				})
+				// getConnection((err, con) => {
+				// 	const sql = 'SELECT * FROM Game';
+				// 	con.query(sql, (err, results) => {
+				// 		if (err) throw err;
+				// 		con.release();
+				// 		return results;
+				// 	})
+				// })
 			}
 		},
 		game: {
 			type: GameType,
 			args: { id: { type: GraphQLID }},
 			resolve(parent, args) {
-				getConnection((err, con) => {
-					const sql = `SELECT * FROM Game WHERE id = ${args.id}`;
-					con.query(sql, (err, result) => {
-						if (err) throw err;
-						con.release();
-						return result;
-					})
-				})
+				// getConnection((err, con) => {
+				// 	const sql = `SELECT * FROM Game WHERE id = ${args.id}`;
+				// 	con.query(sql, (err, result) => {
+				// 		if (err) throw err;
+				// 		con.release();
+				// 		return result;
+				// 	})
+				// })
 			}
 		},
 		everyScore: {
 			type: new GraphQLList(ScoreType),
 			resolve() {
-				getConnection((err, con) => {
-					const sql = 'SELECT * FROM Score';
-					con.query(sql, (err, results) => {
-						if (err) throw err;
-						con.release();
-						return results;
-					})
-				})
+				// getConnection((err, con) => {
+				// 	const sql = 'SELECT * FROM Score';
+				// 	con.query(sql, (err, results) => {
+				// 		if (err) throw err;
+				// 		con.release();
+				// 		return results;
+				// 	})
+				// })
 			}
 		},
 		score: {
 			type: ScoreType,
 			args: { id: { type: GraphQLID }},
 			resolve(parent, args) {
-				getConnection((err, con) => {
-					const sql = `SELECT * FROM Score WHERE id = ${args.id}`;
-					con.query(sql, (err, result) => {
-						if (err) throw err;
-						con.release();
-						return result;
-					})
-				})
+				// getConnection((err, con) => {
+				// 	const sql = `SELECT * FROM Score WHERE id = ${args.id}`;
+				// 	con.query(sql, (err, result) => {
+				// 		if (err) throw err;
+				// 		con.release();
+				// 		return result;
+				// 	})
+				// })
 			}
 		}
 	}
@@ -193,14 +192,14 @@ const Mutation = new GraphQLObjectType({
 				username: { type: GraphQLString }
 			},
 			resolve(parent, args) {
-				getConnection((err, con) => {
-					const sql = 'INSERT INTO User SET ?';
-					con.query(sql, args, (err, result) => {
-						if (err) throw err;
-						con.release();
-						return result;
-					})
-				})
+				// getConnection((err, con) => {
+				// 	const sql = 'INSERT INTO User SET ?';
+				// 	con.query(sql, args, (err, result) => {
+				// 		if (err) throw err;
+				// 		con.release();
+				// 		return result;
+				// 	})
+				// })
 			}
 		},
 		updateUser: {
@@ -212,32 +211,32 @@ const Mutation = new GraphQLObjectType({
 				username: { type: GraphQLString }
 			},
 			resolve(parent, args) {
-				getConnection((err, con) => {
-					let updateValues = '';
-					for (const prop in args) {
-						updateValues += `${prop} = '${args[prop]}' `
-					}
-					const sql = `UPDATE User SET ${updateValues}WHERE id = ${args.id}`;
-					con.query(sql, args, (err, result) => {
-						if (err) throw err;
-						con.release();
-						return result;
-					})
-				})
+				// getConnection((err, con) => {
+				// 	let updateValues = '';
+				// 	for (const prop in args) {
+				// 		updateValues += `${prop} = '${args[prop]}' `
+				// 	}
+				// 	const sql = `UPDATE User SET ${updateValues}WHERE id = ${args.id}`;
+				// 	con.query(sql, args, (err, result) => {
+				// 		if (err) throw err;
+				// 		con.release();
+				// 		return result;
+				// 	})
+				// })
 			}
 		},
 		deleteUser: {
 			type: UserType,
 			args: { id: { type: GraphQLID }},
 			resolve(parent, args) {
-				getConnection((err, con) => {
-					const sql = `DELETE FROM User WHERE id = ${args.id}`;
-					con.query(sql, (err, result) => {
-						if (err) throw err;
-						con.release();
-						return result;
-					})
-				})
+				// getConnection((err, con) => {
+				// 	const sql = `DELETE FROM User WHERE id = ${args.id}`;
+				// 	con.query(sql, (err, result) => {
+				// 		if (err) throw err;
+				// 		con.release();
+				// 		return result;
+				// 	})
+				// })
 			}
 		},
 		addGame: {
@@ -247,14 +246,14 @@ const Mutation = new GraphQLObjectType({
 				dateStamp: { type: GraphQLString }
 			},
 			resolve(parent, args) {
-				getConnection((err, con) => {
-					const sql = 'INSERT INTO Game SET ?';
-					con.query(sql, args, (err, result) => {
-						if (err) throw err;
-						con.release();
-						return result;
-					})
-				})
+				// getConnection((err, con) => {
+				// 	const sql = 'INSERT INTO Game SET ?';
+				// 	con.query(sql, args, (err, result) => {
+				// 		if (err) throw err;
+				// 		con.release();
+				// 		return result;
+				// 	})
+				// })
 			}
 		},
 		updateGame: {
@@ -264,32 +263,32 @@ const Mutation = new GraphQLObjectType({
 				dateStamp: { type: GraphQLString }
 			},
 			resolve(parent, args) {
-				getConnection((err, con) => {
-					let updateValues = '';
-					for (const prop in args) {
-						updateValues += `${prop} = '${args[prop]}' `
-					}
-					const sql = `UPDATE Game SET ${updateValues}WHERE id = ${args.id}`;
-					con.query(sql, args, (err, result) => {
-						if (err) throw err;
-						con.release();
-						return result;
-					})
-				})
+				// getConnection((err, con) => {
+				// 	let updateValues = '';
+				// 	for (const prop in args) {
+				// 		updateValues += `${prop} = '${args[prop]}' `
+				// 	}
+				// 	const sql = `UPDATE Game SET ${updateValues}WHERE id = ${args.id}`;
+				// 	con.query(sql, args, (err, result) => {
+				// 		if (err) throw err;
+				// 		con.release();
+				// 		return result;
+				// 	})
+				// })
 			}
 		},
 		deleteGame: {
 			type: GameType,
 			args: { id: { type: GraphQLID }},
 			resolve(parent, args) {
-				getConnection((err, con) => {
-					const sql = `DELETE FROM Game WHERE id = ${args.id}`;
-					con.query(sql, (err, result) => {
-						if (err) throw err;
-						con.release();
-						return result;
-					})
-				})
+				// getConnection((err, con) => {
+				// 	const sql = `DELETE FROM Game WHERE id = ${args.id}`;
+				// 	con.query(sql, (err, result) => {
+				// 		if (err) throw err;
+				// 		con.release();
+				// 		return result;
+				// 	})
+				// })
 			}
 		},
 		addScore: {
@@ -304,14 +303,14 @@ const Mutation = new GraphQLObjectType({
 				time: { type: GraphQLString }
 			},
 			resolve(parent, args) {
-				getConnection((err, con) => {
-					const sql = 'INSERT INTO Score SET ?';
-					con.query(sql, args, (err, result) => {
-						if (err) throw err;
-						con.release();
-						return result;
-					})
-				})
+				// getConnection((err, con) => {
+				// 	const sql = 'INSERT INTO Score SET ?';
+				// 	con.query(sql, args, (err, result) => {
+				// 		if (err) throw err;
+				// 		con.release();
+				// 		return result;
+				// 	})
+				// })
 			}
 		},
 		updateScore: {
@@ -326,32 +325,32 @@ const Mutation = new GraphQLObjectType({
 				time: { type: GraphQLString }
 			},
 			resolve(parent, args) {
-				getConnection((err, con) => {
-					let updateValues = '';
-					for (const prop in args) {
-						updateValues += `${prop} = '${args[prop]}' `
-					}
-					const sql = `UPDATE Score SET ${updateValues}WHERE id = ${args.id}`;
-					con.query(sql, args, (err, result) => {
-						if (err) throw err;
-						con.release();
-						return result;
-					})
-				})
+			// 	getConnection((err, con) => {
+			// 		let updateValues = '';
+			// 		for (const prop in args) {
+			// 			updateValues += `${prop} = '${args[prop]}' `
+			// 		}
+			// 		const sql = `UPDATE Score SET ${updateValues}WHERE id = ${args.id}`;
+			// 		con.query(sql, args, (err, result) => {
+			// 			if (err) throw err;
+			// 			con.release();
+			// 			return result;
+			// 		})
+			// 	})
 			}
 		},
 		deleteScore: {
 			type: ScoreType,
 			args: { id: { type: GraphQLID }},
 			resolve(parent, args) {
-				getConnection((err, con) => {
-					const sql = `DELETE FROM Score WHERE id = ${args.id}`;
-					con.query(sql, (err, result) => {
-						if (err) throw err;
-						con.release();
-						return result;
-					})
-				})
+				// getConnection((err, con) => {
+				// 	const sql = `DELETE FROM Score WHERE id = ${args.id}`;
+				// 	con.query(sql, (err, result) => {
+				// 		if (err) throw err;
+				// 		con.release();
+				// 		return result;
+				// 	})
+				// })
 			}
 		}
 	}
