@@ -5,10 +5,16 @@
   "main": "index.js",
   "scripts": {
     "test": "export NODE_ENV=test && mocha test/",
+<<<<<<< HEAD
+    "webpack-final": "webpack -d --watch --display-error-details",
+    "server": "nodemon server/server.js",
+    "dev": "webpack-dev-server"
+=======
     "dev": "webpack-dev-server",
     "build": "webpack -d --watch --display-error-details",
     "prod": "webpack -p",
     "server": "nodemon server/server.js"
+>>>>>>> 1e1bc6e531d36d379879dfc0d81c26d54de2b8cc
   },
   "repository": {
     "type": "git",
@@ -45,18 +51,25 @@
   },
   "dependencies": {
     "@material-ui/core": "^3.2.0",
+<<<<<<< HEAD
+=======
     "apollo-boost": "^0.1.16",
+>>>>>>> 1e1bc6e531d36d379879dfc0d81c26d54de2b8cc
     "babel-register": "^6.26.0",
     "dotenv": "^6.1.0",
     "express": "^4.16.3",
     "express-graphql": "^0.6.12",
     "graphql": "^14.0.2",
+<<<<<<< HEAD
+=======
     "join-monster": "^2.1.0",
     "knex": "^0.15.2",
     "mysql": "^2.16.0",
+>>>>>>> 1e1bc6e531d36d379879dfc0d81c26d54de2b8cc
     "passport": "^0.4.0",
     "passport-google-oauth20": "^1.0.0",
     "react": "^16.5.2",
+    "react-dazzle": "^1.4.0",
     "react-dom": "^16.5.2"
   }
 }
