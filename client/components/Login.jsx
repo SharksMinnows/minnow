@@ -1,6 +1,6 @@
 import React from 'react'; 
 import Button from '@material-ui/core/Button';
-// import { Link } from 'react-router-dom';
+
 
 
 const Login = () => {
@@ -10,12 +10,5 @@ const Login = () => {
     </div>
   )
 }
-      // <Button><a href="/auth/google"></a>
-      //   Login With Google, Bro.
 
 export default Login; 
-
-
-//OAuth Flow 
-
-<a href="/auth/google">Sign In with Google</a>
