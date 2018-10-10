@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
+import Login from './components/Login.jsx'
 import Board from './components/Board/Board.jsx'
-
 //sass//
 import './App.scss'
 
@@ -10,8 +10,9 @@ class App extends Component {
   }
 
   render() {
-    return (
+    return(
       <div>
+        <Login />
         <Board />
       </div>
     )
