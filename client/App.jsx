@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Login from './components/Login.jsx'
+
 
 class App extends Component {
   constructor(props) {
@@ -6,9 +8,9 @@ class App extends Component {
   }
 
   render() {
-    return (
+    return(
       <div>
-        Sharks!
+        <Login />
       </div>
     )
   }
