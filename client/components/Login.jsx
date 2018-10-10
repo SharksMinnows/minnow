@@ -17,11 +17,12 @@ const Login = () => {
   }
   return (
    <div id="user-login">
-    <Button id="google-login-btn" onClick={handleGoogleClick}>
-     Login With Google
-    </Button>
+     <p>minn.io</p>
+     <Button id="google-login-btn" onClick={handleGoogleClick}>
+       Login With Google
+     </Button>
    </div>
-  )
-}
+  );
+};
   
   export default Login; 
