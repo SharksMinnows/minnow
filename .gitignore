@@ -3,3 +3,4 @@ package-lock.json
 bundle.js
 keys.js
 .DS_Store
+.env
