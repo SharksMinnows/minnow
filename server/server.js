@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const path = require('path')
 const authRoutes = require('./routes/auth-routes.js');
-const passportSetup = require('./passport-config.js')
+// const passportSetup = require('./passport-config.js')
 const PORT = 3333;
 
 
