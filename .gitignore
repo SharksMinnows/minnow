@@ -1,7 +1,5 @@
 node_modules/
 package-lock.json
 bundle.js
-keys.js
-.DS_Store
 .env
-.DS_Store 
+.DS_Store
