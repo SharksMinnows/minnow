@@ -60,4 +60,5 @@ function draw() {
   user.move(user.speed);
   rect(0, 0, 6000, 6000);
   fill('rgba(0,255,0, 0.25)');
+  console.log(user.pos)
 }
