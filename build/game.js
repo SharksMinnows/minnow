@@ -1,5 +1,6 @@
 //Game logic here!  should be wrapped and only triggered once lobby is full and ready to play
 let user;
+let img;
 let gameStatus = 'waiting';  // Temporary variable - gameStatus should be coming from socket constantly
 
 class Player {
@@ -29,7 +30,7 @@ class Player {
       fill('red');
       ellipse(this.pos.x, this.pos.y, this.r*2, this.r*2)
     } else { 
-      fill('blue');
+      fill('orange');
       ellipse(this.pos.x, this.pos.y, this.r*2, this.r*2)
     }
   }
@@ -61,6 +62,10 @@ class Watcher extends Player {
   }
 }
 
+function preload() {
+  img = loadImage('img/tank.jpg');
+}
+
 //create board
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -76,7 +81,7 @@ function draw() {
   background('#ececec');
   translate((width / 2) - user.pos.x, (height / 2) - user.pos.y)
   
-  user.show();
+  
 
   if (gameStatus === 'started') {
     user.move();
@@ -84,9 +89,11 @@ function draw() {
   
   // Visual Game Boarder
   fill('rgba(0,255,55, 0.25)');
-  rect(0, 0, 6000, 6000);
-
-  if (user.pos.x < 0 - user.r * 2) {
+  // rect(0, 0, 6000, 6000);
+  image(img, 0, 0, 6000, 6000);
+user.show();
+  if (user.pos.x < 10 - user.r * 2) {
+    console.log('')
     noLoop(); // SAFE ZONE!!!! NO more moving
   } else {
     user.constrain(); // Not in safe zone - keep setting constraints 
