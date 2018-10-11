@@ -6,7 +6,7 @@
   "scripts": {
     "test": "export NODE_ENV=test && mocha test/",
     "dev": "webpack-dev-server",
-    "bundle": "webpack -d --watch --display-error-details",
+    "build": "webpack -d --watch --display-error-details",
     "prod": "webpack -p",
     "server": "nodemon server/server.js"
   },
@@ -58,6 +58,8 @@
     "passport-google-oauth20": "^1.0.0",
     "react": "^16.5.2",
     "react-dazzle": "^1.4.0",
-    "react-dom": "^16.5.2"
+    "react-dom": "^16.5.2",
+    "socket.io": "^2.1.1",
+    "socket.io-client": "^2.1.1"
   }
 }
