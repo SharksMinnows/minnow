@@ -8,7 +8,7 @@
     "dev": "webpack-dev-server",
     "build": "webpack -d --watch --display-error-details",
     "prod": "webpack -p",
-    "server": "nodemon server/index.js"
+    "server": "nodemon server/server.js"
   },
   "repository": {
     "type": "git",
