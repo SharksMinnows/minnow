@@ -2,12 +2,28 @@
 let user;
 let gameStatus = 'waiting';  // Temporary variable - gameStatus should be coming from socket constantly
 
+
+const socket = io.connect('192.168.0.198:3333');
+
+let allPlayers = {};
+
+socket.on('update', data => {
+  let keys = Object.keys(data)
+  keys.forEach(key => {
+    allPlayers[key] = data[key]
+  })
+  console.log(allPlayers);
+})
+
+
 class Player {
   constructor() {
     this.type = 'minnow';
     this.id = null; // Should represent socket connection ID so socket can identify players
     this.status = 'alive'; // Values should be alive, dead, safe?
     this.pos = createVector(width/2, height/2);
+    
+    socket.on('setID', newID => this.id = newID)
   }
 
   move() {
@@ -15,6 +31,9 @@ class Player {
       const vel = createVector(mouseX - width / 2, mouseY - height / 2);
       vel.setMag(this.speed);
       this.pos.add(vel);
+      let dataForSocket = {x: this.pos.x, y: this.pos.y, id: this.id};
+      socket.emit('update', dataForSocket);
+      console.log(dataForSocket);
     }
   }
 
@@ -25,6 +44,7 @@ class Player {
   }
 
   show() {
+    
     if (this.type === 'shark') {
       fill('red');
       ellipse(this.pos.x, this.pos.y, this.r*2, this.r*2)
