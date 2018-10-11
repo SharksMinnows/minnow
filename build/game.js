@@ -3,12 +3,40 @@ let user;
 let img;
 let gameStatus = 'waiting';  // Temporary variable - gameStatus should be coming from socket constantly
 
+let players = {
+  1: {
+    type: null,
+    x: 10,
+    y: 20,
+  }, 
+  2: {
+    type: null,
+    x: 30,
+    y: 40,
+  }, 
+  3: {
+    type: null,
+    x: 100,
+    y: 200,
+  }, 
+  4: {
+    type: null,
+    x: 200,
+    y: 230,
+  }, 
+  5: {
+    type: null,
+    x: 423,
+    y: 243,
+  }, 
+}
+
 class Player {
-  constructor() {
+  constructor(x, y) {
     this.type = 'minnow';
     this.id = null; // Should represent socket connection ID so socket can identify players
     this.status = 'alive'; // Values should be alive, dead, safe?
-    this.pos = createVector(width/2, height/2);
+    this.pos = createVector(x, y);
   }
 
   move() {
@@ -47,8 +75,8 @@ class Shark extends Player {
 }
 
 class Minnow extends Player {
-  constructor() {
-    super()
+  constructor(x, y) {
+    super(x, y)
     this.r = 20
     this.speed = 20
   }
@@ -63,13 +91,17 @@ class Watcher extends Player {
 }
 
 function preload() {
-  img = loadImage('img/tank.jpg');
+  img = loadImage('img/tank5.jpg');
 }
 
 //create board
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  user = new Minnow();
+  user = new Minnow(100, 200);
+
+  for (let keys in players) {
+    players[keys].type = new Minnow(players[keys].x, players[keys].y)
+  }
 
   // Temp function to wait for game to start
   setTimeout(() => {
@@ -91,9 +123,12 @@ function draw() {
   fill('rgba(0,255,55, 0.25)');
   // rect(0, 0, 6000, 6000);
   image(img, 0, 0, 6000, 6000);
-user.show();
+  user.show();
+  for (let keys in players) {
+    players[keys].type.show()
+  }
+  
   if (user.pos.x < 10 - user.r * 2) {
-    console.log('')
     noLoop(); // SAFE ZONE!!!! NO more moving
   } else {
     user.constrain(); // Not in safe zone - keep setting constraints 
