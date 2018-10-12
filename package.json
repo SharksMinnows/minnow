@@ -4,11 +4,11 @@
   "description": "Digital version of childhood game Sharks & Minnows",
   "main": "index.js",
   "scripts": {
-    "test": "export NODE_ENV=test && mocha test/",
+    "test": "export NODE_ENV=test && jest test/",
     "dev": "webpack-dev-server",
     "build": "webpack -d --watch --display-error-details",
     "prod": "webpack -p",
-    "server": "nodemon server/server.js"
+    "server": "node server/server.js"
   },
   "repository": {
     "type": "git",
@@ -32,6 +32,7 @@
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.6.0",
     "expect": "^23.6.0",
+    "jest": "^23.6.0",
     "jsdom": "^12.2.0",
     "mocha": "^5.2.0",
     "node-sass": "^4.9.3",

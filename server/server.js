@@ -1,3 +1,6 @@
+const trace_events = require('trace_events');
+const tracing = trace_events.createTracing({ categories: ['node.perf'] });
+
 require('dotenv/config')
 const express = require('express');
 const app = express();
@@ -38,3 +41,4 @@ io.on('connection', (socket) => {
     })
 })
 
+tracing.enable();

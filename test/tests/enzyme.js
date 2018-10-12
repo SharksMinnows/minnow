@@ -1,19 +1,22 @@
 import React from 'react';
-import { expect } from 'chai';
-import Enzyme, { shallow } from 'enzyme';
+import { shallow, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-Enzyme.configure({ adapter: new Adapter() })
+configure({ adapter: new Adapter() })
 
-import Board from '../../client/components/Board/Board.jsx';
+import List from '../../client/components/Board/List.jsx';
 
 describe('React unit tests', () => {
-  describe('<Board />', () => {
-    let wrapper = shallow(<Board/>);
+  describe('<List test', () => {
 
-    it('Renders a <canvas> with the class board', () => {
-      expect(wrapper.hasClass('board'));
-      expect(wrapper.type()).equal('canvas');
+    it('Renders list-items', () => {
+      const items = ['one', 'two', 'three'];
+      const wrapper = shallow(<List items={items} />);
+
+      expect(wrapper.find('.list-items')).toBeDefined();
+      expect(wrapper.find('.item')).toHaveLength(items.length);
+      expect(wrapper.contains(<li key='one' className='item'>one</li>)).toBeTruthy();
+      expect(wrapper.find('.item').get(2).props.children).toEqual('three');
+      expect(wrapper.hasClass('list-items'));
     });
-
   });
 });
