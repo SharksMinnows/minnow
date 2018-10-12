@@ -27,7 +27,7 @@ class Player {
       const vel = createVector(mouseX - width / 2, mouseY - height / 2);
       vel.setMag(this.speed);
       this.pos.add(vel);
-      let dataForSocket = {x: this.pos.x, y: this.pos.y, id: this.id};
+      let dataForSocket = {x: this.pos.x, y: this.pos.y, id: this.id, type: this.type};
       socket.emit('update', dataForSocket);
     }
   }
