@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import TestStuff from './TestStuff';
 import './Board.scss'
 
 class Board extends Component {
