@@ -14,8 +14,8 @@ GAMESTATUS OPTIONS
 
 let gameStatus = 'alive';  // Temporary variable - gameStatus should be coming from socket constantly
 
-// const socket = io.connect('192.168.0.198:3333');
-const socket = io.connect('http://localhost:3333');
+const socket = io.connect('192.168.0.198:3333');
+// const socket = io.connect('http://localhost:3333');
 
 let socket_id, userColor;
 socket.on('setID', newID => socket_id = newID);

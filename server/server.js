@@ -60,7 +60,8 @@ io.on('connection', (socket) => {
         socket.emit('update', allPlayers);
     })
     socket.on('eaten', id => {
-        allPlayers[id].emit('setType', 'Shark')
+        connections[id].emit('setType', id)
+        allPlayers[id].type = 'Shark';
         
     })
 })
